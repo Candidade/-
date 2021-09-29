@@ -1,25 +1,25 @@
-import logo from './logo.svg';
+import React, { memo, useState } from 'react';
 import './App.css';
 
+// import store from './store';
+// import { Provider } from 'react-redux';
+
+import Authenticated from './authenticated-app';
+import Unauthenticated from './unauthenticated-app';
+
 function App() {
+  const [user, setUser] = useState(true);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    // <Provider store={store}>
+    <div>
+      {user ? (
+        <Authenticated setLogin={setUser} />
+      ) : (
+        <Unauthenticated setLogin={setUser} />
+      )}
     </div>
+    // </Provider>
   );
 }
 
-export default App;
+export default memo(App);
